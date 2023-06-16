@@ -4,6 +4,8 @@ cachetools
 certifi
 charset-normalizer
 click
+PyWavelets
+tqdm
 cloudpickle
 colorama
 cycler
