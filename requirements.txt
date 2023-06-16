@@ -62,6 +62,7 @@ termcolor
 threadpoolctl
 toolz
 torch
+gunicorn
 typing_extensions
 urllib3
 Werkzeug
