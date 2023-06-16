@@ -1,0 +1,141 @@
+{% extends 'layout.html' %}
+{% block maincontent %}
+
+<div class="form container card" style="width: 600px;">
+    <div id="sine">
+        <form action="/train"  method="post"  class="form"  enctype="multipart/form-data" >
+            <div class="text-center" id="spinner" style="display: none;">
+                <div class="spinner-border" role="status">
+                  <span class="sr-only">Loading...</span>
+                </div>
+              </div>
+            
+            {% if error %}
+               <h4 class="error">{{error}}</h4>
+            {% endif %}  
+           <table class=" table table-active">
+            <tr>
+                <td>
+                    Select Your choice
+                </td>
+                <td>
+                    <select id="datachoice" name="datachoice" onchange="function1()" class="form-control" name="datachoice">
+                     <option value="Pre-Uploaded Data">Pre-Uploaded Data</option>
+                     <option value="Uploaded new preprocessed Data">Uploaded new preprocessed Data</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Select Your choice
+                </td>
+                <td>
+                    <select id="choice" name="choice" class="form-control" name="choice">
+                     <option value="Based on Region">Based on Region</option>
+                     <option value="Without Region">Complete Waveform</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                
+                <td> <strong>Select Input Features</strong>  </td>
+                <td><select id="inputs" name="inputs" multiple="multiple" >  
+                    {% for item in features %}
+                     <option>{{item}}</option>
+                    {% endfor %}
+                 </select></td>
+            </tr>
+            <tr>
+                <td> <strong>Select Output Features</strong>  </td>
+                <td><select id="outputs" name="outputs" class="form-control" multiple="multiple" >  
+                    {% for item in features %}
+                     <option>{{item}}</option> 
+                    {% endfor %}
+                 </select></td>
+            </tr>
+            <tr>
+                <td><strong>Select Algorithm</strong></td>
+                <td>
+                    <select id="algos" class="form-control" name="algo"  >  
+                
+                        {% for item in algos %}
+                            <option>{{item}}</option>
+                        {% endfor %}
+                     </select>
+                </td>
+            </tr>
+                <tr id="Neu1">
+                    <td><strong>Neurons Layer1</strong></td>
+                    <td>
+                        <input class="form-control" id="neu1" name="neu1" type="number" placeholder="Enter Number" value=32>
+                    </td>
+                </tr>
+                <tr id="Neu2">
+                    <td><strong>Neurons Layer2</strong></td>
+                    <td>
+                        <input class="form-control" id="neu2" name="neu2" type="number" placeholder="Enter Number" value=16>
+                    </td>
+                </tr>
+                <tr id="Neu3">
+                    <td><strong>Neurons Layer3</strong></td>
+                    <td>
+                        <input class="form-control" id="neu3" name="neu3" type="number" placeholder="Enter Number" value="1">
+                    </td>
+                </tr>
+                <tr id="Epoch">
+                    <td><strong>No. of Epochs</strong></td>
+                    <td>
+                        <input class="form-control" id="epoch" name="epoch" type="number" placeholder="Enter Number" value=10>
+                    </td>
+                </tr>        
+        </table>
+        <input id="btnTrain" type="submit" class="form-control btn btn-outline-primary btn-success fw-bold alert-danger" value="Train and Save Model">
+        </form>
+    </div>
+    <div id="preprocessUpload" class="spinner1 form card" style="display: none;">
+        <form action="/uploadPreprocessData" method="post" enctype="multipart/form-data">
+            <strong for="file">Choose preprocessed File</strong><hr>
+            <input class="file form form-control" id="file" name="file" type="file" multiple accept=".csv" required>
+            <hr>
+             <div class="form-control-sm">
+            <input class=" btn btn-danger btn-outline-success" style="float: left;"  type="submit" value="Verify and upload">
+            <input class="btn btn-danger btn-outline-success" style="float: right;" type="button" onclick="document.getElementById('preprocessUpload').style.display = 'none'" value="Close">
+        </div>
+        </form>
+    </div>
+</div>
+  
+<script>
+    $(document).ready(function() {  
+      $('#outputs').multiselect()
+      $('#inputs').multiselect()
+      $('#datachoice').multiselect()
+      $('#datachice').change()
+      $('#algos').multiselect();
+      $('#choice').multiselect();
+      $('#algos').change(
+         function()
+         {
+           
+            var values=$('#outputs').val()
+            if($('#algos').find(":selected").text()=='Random Forest')
+            {
+              
+               document.getElementById("Neu1").style.display = "none";
+               document.getElementById("Neu2").style.display = "none";
+               document.getElementById("Neu3").style.display = "none";
+               document.getElementById("Epoch").style.display = "none";
+            }
+            else
+            {
+               document.getElementById("Neu1").style.display = "table-row";
+               document.getElementById("Neu2").style.display = "table-row";
+               document.getElementById("Neu3").style.display = "table-row";
+               document.getElementById("Epoch").style.display = "table-row";
+            }
+         }
+      );   
+  });  
+ 
+</script>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'layout.html' %}
+{% block maincontent %}
+<form class="container card" action="/uploadData" enctype="multipart/form-data" method="post">
+    <div class="  form-group ">
+        <label for="fileUpload" >Choose Simulated Data Files:</label>
+        <input class="form-control" multiple type="file" class="form-control-file" id="file" name="file" accept=".csv" required>
+    </div>
+    <button type="submit" style="margin-bottom: 20px;" class="form-group1 form-control btn btn-primary">Verify and upload</button>
+    <button type="button" onclick="preprocess()" style="margin-bottom: 20px;" class="form-group1 form-control btn btn-secondary">Preprocess</button>
+    <button type="button" onclick="dwt()" style="margin-bottom: 20px;" class="form-group1 form-control btn btn-danger">DWT Conversion</button>
+    <button type="button" onclick="segment()" style="margin-bottom: 20px;" class="form-group1 form-control btn btn-danger">Segmentaion</button>
+</form>
+<form id="dwt"  style="display: none;" class="card spinner1" action="/DWT" method="post" enctype="multipart/form-data">
+   <input class="form-group form-control" type="number" required placeholder="Enter Level"  name="level">
+   <strong   for="mode">Select Mode</strong>
+    <select required name="mode" id="mode" class="form-control gap"> 
+      <option value="zero">zero</option>
+      <option value="constant">constant</option>
+      <option value="symmetric">symmetric</option>
+      <option value="periodic">periodic</option>
+      <option value="smooth">smooth</option>
+      <option value="periodization">periodization</option>
+      <option value="reflect">reflect</option>
+      <option value="antisymmetric">antisymmetric</option>
+      <option value="antireflect">antireflect</option>  
+    </select>
+    <hr>
+    <input class="btn btn-primary" type="submit" value="DWT Conversion">
+    <input class="btn btn-danger btn-outline-success" style="float: right;" type="button" onclick="document.getElementById('dwt').style.display = 'none'" value="Close">
+</form>
+<br>
+
+{% endblock %}

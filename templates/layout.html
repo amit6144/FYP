@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{title}}</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{ url_for('static',filename='/css/bootstrap.min.css' ) }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='/css/style.css' ) }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='/css/virtual-select.min.css' ) }}">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>  
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">  
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/js/bootstrap-multiselect.js"></script>  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-multiselect/0.9.13/css/bootstrap-multiselect.css">  
+  
+
+     
+    
+</head>
+<body class="body">
+    <div class="header">
+        <div class="">
+            <div class="row">
+                <div class="col-12 col-sm-6">
+                    <h1>Logo</h1>
+                </div>
+                <div class="col-12 col-sm-6 text-sm-right">
+                    <nav class="nav navbar navbar-expand-sm navbar-light">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNav">
+                            <ul class=" nav nav-tabs">
+                                <li class="nav-item ">
+                                    <a class="nav-link" href="/">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/dataSpace">Data Space</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/trainingSpace">Training Space</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/evaluation">Evaluation</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="checkerSpace">Checker Space</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    {% block maincontent %}
+        
+    {% endblock %}
+    
+    <div class="spinner1" id="spinner" style="display: none;">
+        <img src="{{ url_for('static',filename='/img/gears.gif' ) }}">
+        <h5 class="alert alert-dark" style="text-align: center;font-weight: bold;">Please wait</h5>
+    </div>
+    <div class="alert">
+        <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+        {{massege}}
+      </div>
+       
+ 
+     
+    <footer>
+        <p>&copy; 2023 ML Based AMS Circuit Verification Package. All rights reserved.</p>
+    </footer>
+
+
+    <script src="{{ url_for('static',filename='/js/main.js') }}"></script>
+
+</body>
+</html>
