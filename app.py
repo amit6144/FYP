@@ -16,6 +16,7 @@ features=features.replace('[','')
 features=features.replace(']','')
 features=features.replace('\'','')
 features=features.split(', ')
+app=Flask(__name__,static_folder="static/")
 app=Flask(__name__)
 app.secret_key='amit-secret-key'
 
