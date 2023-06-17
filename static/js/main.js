@@ -62,4 +62,36 @@ function function1()
 }
 
 
+    $(document).ready(function() {  
+      $('#outputs').multiselect()
+      $('#inputs').multiselect()
+      $('#datachoice').multiselect()
+      $('#datachice').change()
+      $('#algos').multiselect();
+      $('#choice').multiselect();
+      $('#algos').change(
+         function()
+         {
+           
+            var values=$('#outputs').val()
+            if($('#algos').find(":selected").text()=='Random Forest')
+            {
+              
+               document.getElementById("Neu1").style.display = "none";
+               document.getElementById("Neu2").style.display = "none";
+               document.getElementById("Neu3").style.display = "none";
+               document.getElementById("Epoch").style.display = "none";
+            }
+            else
+            {
+               document.getElementById("Neu1").style.display = "table-row";
+               document.getElementById("Neu2").style.display = "table-row";
+               document.getElementById("Neu3").style.display = "table-row";
+               document.getElementById("Epoch").style.display = "table-row";
+            }
+         }
+      );   
+  });  
+ 
+
    
